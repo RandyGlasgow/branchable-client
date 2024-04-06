@@ -2,7 +2,7 @@
 
 import useStoreUserEffect from "@/hooks/useStoreUserEffect";
 import { Button } from "@/components/core/button";
-import { PageLayout } from "@/Layouts/Page";
+import { PageLayout } from "@/components/layouts/Page";
 
 export default function UserPage() {
   const id = useStoreUserEffect();

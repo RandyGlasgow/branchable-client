@@ -1,5 +1,4 @@
 import { FC, forwardRef } from "react";
-import { combineClassNames } from "../utils/combineClassNames";
 
 type ButtonProps = {} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 export const Button: FC<ButtonProps> = forwardRef<
@@ -10,10 +9,9 @@ export const Button: FC<ButtonProps> = forwardRef<
     <button
       ref={ref}
       {...props}
-      className={`p-2 rounded-sm 
-      bg-emerald-400 text-emerald-950 hover:bg-emerald-500 
-      dark:bg-emerald-600 dark:text-emerald-50 hover:dark:bg-emerald-700 
-      focus:ring-4 ring-emerald-300 dark:ring:ring-emerald-500 outline-none ${className}`}
+      className={`px-2 py-1 rounded 
+      bg-blue-600 hover:bg-blue-700 text-blue-50 transition-colors
+      focus:ring-4 ring-blue-300 dark:ring:ring-blue-500 outline-none ${className}`}
     >
       {children}
     </button>
