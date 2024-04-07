@@ -1,4 +1,5 @@
 import { v } from "convex/values";
+
 import { mutation, query } from "./_generated/server";
 import { validateUserIdentity } from "./utils/auth/validateUserIdentity";
 
@@ -76,6 +77,7 @@ export const user_id = mutation({
 export const get_user_settings = query({
   args: { id: v.id("user") },
   handler: async (ctx, args) => {
+    if (!args.id) throw new Error("User ID is required");
     await validateUserIdentity(ctx);
     return await ctx.db
       .query("user_settings")
