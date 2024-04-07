@@ -1,8 +1,9 @@
+"use client";
 import { NavigationBar } from "../shared/NavigationBar/NavigationBar";
 
 export const PageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-5xl mx-auto flex flex-col gap-2">
       <NavigationBar />
       {children}
     </div>

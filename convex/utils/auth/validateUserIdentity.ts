@@ -5,7 +5,7 @@ import {
   UserIdentity,
 } from "convex/server";
 
-type CTX = GenericMutationCtx<AnyDataModel> | GenericQueryCtx<AnyDataModel>;
+type CTX = GenericMutationCtx<AnyDataModel> | GenericQueryCtx<any>;
 export const validateUserIdentity = async (ctx: CTX): Promise<UserIdentity> => {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) {

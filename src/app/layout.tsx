@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { PageLayout } from "@/components/layouts/Page";
+import { ProtectedPage } from "@/components/layouts/ProtectedPage";
+import { ProtectedConvexPage } from "@/components/layouts/ConvexPage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main>{children}</main>
+        <ProtectedPage>
+          <ProtectedConvexPage>{children}</ProtectedConvexPage>
+        </ProtectedPage>
       </body>
     </html>
   );
