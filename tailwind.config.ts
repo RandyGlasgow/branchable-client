@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      borderRadius: {
+        inherit: "inherit",
+      },
       boxShadow: {
         "inner-hard": "inset 0px 0px 2px 1px var(--tw-shadow-colored)",
       },

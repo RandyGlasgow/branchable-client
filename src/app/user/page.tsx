@@ -1,8 +1,8 @@
 "use client";
 
-import useStoreUserEffect from "@/hooks/useStoreUserEffect";
-import { Button } from "@/components/core/button";
+import { Button } from "@/components/core/Button";
 import { PageLayout } from "@/components/layouts/Page";
+import useStoreUserEffect from "@/hooks/useStoreUserEffect";
 
 export default function UserPage() {
   const id = useStoreUserEffect();

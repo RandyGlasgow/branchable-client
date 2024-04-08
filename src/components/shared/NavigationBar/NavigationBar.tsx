@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { useMemo } from "react";
 
-import { Button } from "@/components/core/button";
-import useStoreUserEffect from "@/hooks/useStoreUserEffect";
+import { Avatar } from "@/components/core/avatar/Avatar";
+import { CheckboxItem } from "@/components/core/dropdown/CheckboxItem";
+import { Dropdown } from "@/components/core/dropdown/Dropdown";
+import { DropdownItem } from "@/components/core/dropdown/DropdownItem";
 import { useUserSettings } from "@/hooks/useUserSettings";
-import { SignIn, useAuth } from "@clerk/nextjs";
-
-import { Avatar } from "../Avatar/Avatar";
+import { useAuth } from "@clerk/nextjs";
+import { ExitIcon } from "@radix-ui/react-icons";
 
 export const NavigationBar = () => {
   const { signOut } = useAuth();
@@ -20,15 +21,49 @@ export const NavigationBar = () => {
   }, [userSettings]);
 
   return (
-    <nav className="bg-inherit text-inherit dark:bg-inherit dark:text-inherit flex justify-end bg-red-200 py-2 items-center gap-2">
+    <nav className="bg-inherit text-inherit dark:bg-inherit dark:text-inherit flex justify-end py-2 items-center gap-2">
       {userSettings && (
-        <Avatar
-          alt=""
-          src={userSettings?.avatar}
-          fallback={`${initials}`}
+        <Dropdown
+          align="end"
+          groups={[
+            {
+              label: "Links",
+              items: [
+                <Link href="/account" key={"account"}>
+                  <DropdownItem text="Account" />
+                </Link>,
+                <Link href="/settings" key={"settings"}>
+                  <DropdownItem text="Settings" />
+                </Link>,
+                <Link href="/organizations" key="organizations">
+                  <DropdownItem text="Organizations" />
+                </Link>,
+              ],
+            },
+            {
+              divider: true,
+              items: [
+                <CheckboxItem
+                  onClick={(e) => signOut()}
+                  icon={<ExitIcon />}
+                  text="Logout"
+                  key={"logout"}
+                  side={"right"}
+                  className="hover:text-red-500 hover:bg-red-100"
+                />,
+              ],
+            },
+          ]}
+          trigger={
+            <Avatar
+              alt={userSettings.first_name}
+              size="small"
+              src={userSettings?.avatar}
+              fallback={`${initials}`}
+            />
+          }
         />
       )}
-      <Button onClick={() => signOut()}>Logout</Button>
     </nav>
   );
 };
