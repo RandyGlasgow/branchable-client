@@ -1,6 +1,7 @@
-import { Avatar } from '@/components/core/avatar/Avatar';
-import useStoreUserEffect from '@/hooks/useStoreUserEffect';
-import { useUserSettings } from '@/hooks/useUserSettings';
+import { Avatar } from 'src/components/core/avatar/Avatar';
+import useStoreUserEffect from 'src/hooks/useStoreUserEffect';
+import { useUserSettings } from 'src/hooks/useUserSettings';
+
 import { Trigger } from '@radix-ui/react-dropdown-menu';
 
 export const AvatarCard = () => {

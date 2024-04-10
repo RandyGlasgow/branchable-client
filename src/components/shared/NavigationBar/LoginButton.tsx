@@ -1,5 +1,6 @@
-import { Button } from '@/components/core/Button';
-import * as Link from '@/components/Links';
+import { Button } from 'src/components/core/Button';
+import * as Link from 'src/components/Links';
+
 import { useAuth } from '@clerk/nextjs';
 
 export const LoginButton = () => {
