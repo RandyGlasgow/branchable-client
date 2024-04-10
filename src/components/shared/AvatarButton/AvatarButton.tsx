@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { CheckboxItem } from 'src/components/core/dropdown/CheckboxItem';
-import { Dropdown } from 'src/components/core/dropdown/Dropdown';
-import { DropdownItem } from 'src/components/core/dropdown/DropdownItem';
 
 import { useAuth } from '@clerk/nextjs';
+import { CheckboxItem } from '@components/core/dropdown/CheckboxItem';
+import { Dropdown } from '@components/core/dropdown/Dropdown';
+import { DropdownItem } from '@components/core/dropdown/DropdownItem';
 import { ExitIcon } from '@radix-ui/react-icons';
 
 import { AvatarCard } from './AvatarCard';

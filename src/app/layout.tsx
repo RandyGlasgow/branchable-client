@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import './globals.css';
 
 import { Inter } from 'next/font/google';
-import { ProtectedConvexPage } from 'src/components/layouts/ConvexPage';
-import { ProtectedPage } from 'src/components/layouts/ProtectedPage';
+
+import { ProtectedConvexPage } from '@components/layouts/ConvexPage';
+import { ProtectedPage } from '@components/layouts/ProtectedPage';
 
 const inter = Inter({ subsets: ["latin"] });
 

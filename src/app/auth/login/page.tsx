@@ -1,7 +1,6 @@
 "use client";
-import { Button } from 'src/components/core/Button';
-
 import { SignInButton } from '@clerk/nextjs';
+import { Button } from '@components/core/Button';
 
 export default function SignUp() {
   return (

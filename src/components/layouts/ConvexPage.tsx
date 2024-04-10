@@ -1,4 +1,5 @@
 "use client";
+
 import { ConvexReactClient } from 'convex/react';
 import { ConvexProviderWithClerk } from 'convex/react-clerk';
 import { FC, PropsWithChildren } from 'react';
