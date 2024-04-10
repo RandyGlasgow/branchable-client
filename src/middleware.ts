@@ -4,7 +4,7 @@ import { publicRoutes } from './constants/publicRoutes';
 
 export default authMiddleware({
   publicRoutes,
-  signInUrl: "/auth/login",
+  signInUrl: "/",
 });
 
 export const config = {
