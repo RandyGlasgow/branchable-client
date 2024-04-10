@@ -1,6 +1,6 @@
-import { Button } from "@/components/core/Button";
-import * as Link from "@/components/Links";
-import { useAuth } from "@clerk/nextjs";
+import { Button } from '@/components/core/Button';
+import * as Link from '@/components/Links';
+import { useAuth } from '@clerk/nextjs';
 
 export const LoginButton = () => {
   const { isSignedIn } = useAuth();

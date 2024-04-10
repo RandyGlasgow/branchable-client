@@ -1,9 +1,10 @@
-import { useConvexAuth } from "convex/react";
-import { useEffect, useState } from "react";
-import { useMutation } from "convex/react";
-import { useUser } from "@clerk/nextjs";
-import { Id } from "../../convex/_generated/dataModel";
-import { api } from "../../convex/_generated/api";
+import { useConvexAuth, useMutation } from 'convex/react';
+import { useEffect, useState } from 'react';
+
+import { useUser } from '@clerk/nextjs';
+
+import { api } from '../../convex/_generated/api';
+import { Id } from '../../convex/_generated/dataModel';
 
 export default function useStoreUserEffect() {
   const { isAuthenticated } = useConvexAuth();

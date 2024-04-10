@@ -1,6 +1,6 @@
-import { authMiddleware } from "@clerk/nextjs";
+import { authMiddleware } from '@clerk/nextjs';
 
-import { publicRoutes } from "./constants/publicRoutes";
+import { publicRoutes } from './constants/publicRoutes';
 
 export default authMiddleware({
   publicRoutes,

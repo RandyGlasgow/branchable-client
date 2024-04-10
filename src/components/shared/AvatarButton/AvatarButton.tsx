@@ -1,15 +1,12 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { Avatar } from "@/components/core/avatar/Avatar";
-import { CheckboxItem } from "@/components/core/dropdown/CheckboxItem";
-import { Dropdown } from "@/components/core/dropdown/Dropdown";
-import { DropdownItem } from "@/components/core/dropdown/DropdownItem";
-import useStoreUserEffect from "@/hooks/useStoreUserEffect";
-import { useUserSettings } from "@/hooks/useUserSettings";
-import { useAuth } from "@clerk/nextjs";
-import { ExitIcon } from "@radix-ui/react-icons";
+import { CheckboxItem } from '@/components/core/dropdown/CheckboxItem';
+import { Dropdown } from '@/components/core/dropdown/Dropdown';
+import { DropdownItem } from '@/components/core/dropdown/DropdownItem';
+import { useAuth } from '@clerk/nextjs';
+import { ExitIcon } from '@radix-ui/react-icons';
 
-import { AvatarCard } from "./AvatarCard";
+import { AvatarCard } from './AvatarCard';
 
 export const AvatarButton = () => {
   const { signOut, isSignedIn } = useAuth();

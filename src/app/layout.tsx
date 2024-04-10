@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ProtectedPage } from "@/components/layouts/ProtectedPage";
-import { ProtectedConvexPage } from "@/components/layouts/ConvexPage";
+import './globals.css';
+
+import { Inter } from 'next/font/google';
+
+import { ProtectedConvexPage } from '@/components/layouts/ConvexPage';
+import { ProtectedPage } from '@/components/layouts/ProtectedPage';
 
 const inter = Inter({ subsets: ["latin"] });
 

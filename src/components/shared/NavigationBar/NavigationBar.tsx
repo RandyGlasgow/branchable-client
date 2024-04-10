@@ -1,5 +1,5 @@
-import { AvatarButton } from "../AvatarButton/AvatarButton";
-import { LoginButton } from "./LoginButton";
+import { AvatarButton } from '../AvatarButton/AvatarButton';
+import { LoginButton } from './LoginButton';
 
 export const NavigationBar = () => {
   return (

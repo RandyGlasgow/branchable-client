@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
-import * as DropdownComponents from "@radix-ui/react-dropdown-menu";
+import * as DropdownComponents from '@radix-ui/react-dropdown-menu';
 
 export type DefaultItem = { text: string } & Omit<
   DropdownComponents.DropdownMenuItemProps,

@@ -1,6 +1,6 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode } from 'react';
 
-import * as DropdownComponents from "@radix-ui/react-dropdown-menu";
+import * as DropdownComponents from '@radix-ui/react-dropdown-menu';
 
 type DropdownGroups = {
   label?: string;

@@ -1,4 +1,4 @@
-import { FC, forwardRef } from "react";
+import { FC, forwardRef } from 'react';
 
 type ButtonProps = {
   color?: "primary" | "secondary" | "danger" | "success" | "warning";

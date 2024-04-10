@@ -1,8 +1,7 @@
-import { Avatar } from "@/components/core/avatar/Avatar";
-import { BlankButton } from "@/components/core/Button";
-import useStoreUserEffect from "@/hooks/useStoreUserEffect";
-import { useUserSettings } from "@/hooks/useUserSettings";
-import { Trigger } from "@radix-ui/react-dropdown-menu";
+import { Avatar } from '@/components/core/avatar/Avatar';
+import useStoreUserEffect from '@/hooks/useStoreUserEffect';
+import { useUserSettings } from '@/hooks/useUserSettings';
+import { Trigger } from '@radix-ui/react-dropdown-menu';
 
 export const AvatarCard = () => {
   const userId = useStoreUserEffect();

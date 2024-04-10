@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ComponentProps, FC } from "react";
+import Link from 'next/link';
+import { ComponentProps, FC } from 'react';
 
 type LinksProps = {} & Omit<ComponentProps<typeof Link>, "href">;
 

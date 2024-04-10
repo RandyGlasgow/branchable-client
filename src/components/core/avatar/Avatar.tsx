@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import * as AvatarComponents from "@radix-ui/react-avatar";
+import * as AvatarComponents from '@radix-ui/react-avatar';
 
 type AvatarProps = {
   src?: string;

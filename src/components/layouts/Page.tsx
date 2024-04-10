@@ -1,5 +1,5 @@
 "use client";
-import { NavigationBar } from "../shared/NavigationBar/NavigationBar";
+import { NavigationBar } from '../shared/NavigationBar/NavigationBar';
 
 export const PageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
