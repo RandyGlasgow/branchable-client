@@ -42,7 +42,7 @@ export const AvatarButton = () => {
               text="Logout"
               key={"logout"}
               side={"right"}
-              className="hover:text-red-500 hover:bg-red-100"
+              className="bg-red-100 text-red-500 hover:bg-red-400 hover:text-white"
             />,
           ],
         },

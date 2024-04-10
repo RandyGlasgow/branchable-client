@@ -25,7 +25,7 @@ export const Dropdown: FC<DropdownProps> = ({
       <DropdownComponents.Portal>
         <DropdownComponents.Content
           sideOffset={5}
-          className="min-w-44 shadow-lg border border-zinc-200 p-1 rounded bg-zinc-100 bg-opacity-60 backdrop-blur-sm"
+          className="min-w-44 shadow-lg border border-zinc-200 p-1 rounded bg-zinc-100 bg-opacity-80 backdrop-blur-sm"
           {...rest}
         >
           {groups.map((group, index) => (

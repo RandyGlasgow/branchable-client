@@ -1,5 +1,5 @@
-import { defineTable } from "convex/server";
-import { v } from "convex/values";
+import { defineTable } from 'convex/server';
+import { v } from 'convex/values';
 
 // User ID map to email, issuer, subject, and tokenIdentifier
 export const user = defineTable({
