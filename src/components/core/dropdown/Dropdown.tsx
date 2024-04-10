@@ -21,9 +21,7 @@ export const Dropdown: FC<DropdownProps> = ({
 }) => {
   return (
     <DropdownComponents.Root>
-      <DropdownComponents.Trigger className="appearance-none rounded-full">
-        {trigger}
-      </DropdownComponents.Trigger>
+      {trigger}
       <DropdownComponents.Portal>
         <DropdownComponents.Content
           sideOffset={5}
