@@ -13,7 +13,7 @@ export const AvatarCard = () => {
 
   if (!userId) return null;
   return (
-    <Trigger className="flex items-center gap-2 border border-zinc-600 p-1 rounded">
+    <Trigger className="flex items-center gap-2 border border-zinc-300 shadow p-1 rounded bg-zinc-50">
       <Avatar
         alt="user"
         size="small"

@@ -3,9 +3,11 @@ import { LoginButton } from '../Button/LoginButton';
 
 export const NavigationBar = () => {
   return (
-    <nav className="bg-inherit text-inherit dark:bg-inherit dark:text-inherit flex justify-end py-2 items-center gap-2">
-      <AvatarButton />
-      <LoginButton />
+    <nav className="min-h-14 flex justify-center align-middle backdrop-blur-[1px] bg-opacity-40 p-2 lg:px-0 bg-zinc-50 sticky top-0">
+      <div className="w-full flex justify-end max-w-6xl">
+        <AvatarButton />
+        <LoginButton />
+      </div>
     </nav>
   );
 };
