@@ -1,12 +1,10 @@
-import {
-  AnyDataModel,
-  GenericMutationCtx,
-  GenericQueryCtx,
-  UserIdentity,
-} from "convex/server";
+import { AnyDataModel, GenericMutationCtx, GenericQueryCtx, UserIdentity } from 'convex/server';
 
-type CTX = GenericMutationCtx<AnyDataModel> | GenericQueryCtx<any>;
-export const validateUserIdentity = async (ctx: CTX): Promise<UserIdentity> => {
+import { AnyContext } from '../../types/AnyContext';
+
+export const validateUserIdentity = async (
+  ctx: AnyContext
+): Promise<UserIdentity> => {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) {
     throw new Error("Called storeUser without authentication present");
