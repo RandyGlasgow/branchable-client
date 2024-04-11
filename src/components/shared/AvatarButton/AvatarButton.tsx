@@ -1,10 +1,9 @@
-import Link from 'next/link';
-
 import { useAuth } from '@clerk/nextjs';
 import { CheckboxItem } from '@components/core/dropdown/CheckboxItem';
 import { Dropdown } from '@components/core/dropdown/Dropdown';
 import { DropdownItem } from '@components/core/dropdown/DropdownItem';
-import { ExitIcon } from '@radix-ui/react-icons';
+import { BranchCollectionLink } from '@components/Links';
+import { CodeIcon, ExitIcon } from '@radix-ui/react-icons';
 
 import { AvatarCard } from './AvatarCard';
 
@@ -22,15 +21,14 @@ export const AvatarButton = () => {
         {
           label: "Links",
           items: [
-            <Link href="/account" key={"account"}>
-              <DropdownItem text="Account" />
-            </Link>,
-            <Link href="/settings" key={"settings"}>
-              <DropdownItem text="Settings" />
-            </Link>,
-            <Link href="/organizations" key="organizations">
-              <DropdownItem text="Organizations" />
-            </Link>,
+            <DropdownItem text="Account" />,
+            <DropdownItem text="Settings" />,
+            <BranchCollectionLink key={"branch"}>
+              <DropdownItem
+                text="Branch Collections"
+                icon={<CodeIcon />}
+              />
+            </BranchCollectionLink>,
           ],
         },
         {

@@ -10,3 +10,14 @@ export const LoginLink: FC<LinksProps> = ({ children, ...props }) => {
     </Link>
   );
 };
+
+export const BranchCollectionLink: FC<LinksProps> = ({
+  children,
+  ...props
+}) => {
+  return (
+    <Link href="/branch_collection" {...props}>
+      {children}
+    </Link>
+  );
+};
