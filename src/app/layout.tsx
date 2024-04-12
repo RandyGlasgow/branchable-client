@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 
 import { ProtectedConvexPage } from '@components/layouts/ConvexPage';
 import { ProtectedPage } from '@components/layouts/ProtectedPage';
+import { NavigationBar } from '@components/shared/NavigationBar/NavigationBar';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className + " background"}>
         <ProtectedPage>
-          <ProtectedConvexPage>{children}</ProtectedConvexPage>
+          <ProtectedConvexPage>
+            <NavigationBar />
+            {children}
+          </ProtectedConvexPage>
         </ProtectedPage>
       </body>
     </html>

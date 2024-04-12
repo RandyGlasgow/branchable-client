@@ -1,9 +1,11 @@
 "use client";
 import { useQueries, useQuery } from 'convex/react';
+import Link from 'next/link';
 
 import { Card } from '@components/core/card/Card';
 import { CardContent } from '@components/core/card/CardContetn';
 import { CardHeader } from '@components/core/card/CardHeader';
+import { BranchCollectionLink } from '@components/Links';
 import useStoreUserEffect from '@hooks/useStoreUserEffect';
 
 import { api } from '../../../../convex/_generated/api';
@@ -22,8 +24,20 @@ export const BranchCollection = () => {
           left={<h2>Organizations</h2>}
           right={<CreateNewCollectionDialog />}
         />
-        <div className="grid grid-cols-1 gap-4 mt-4">
-          {JSON.stringify(collections)}
+        <div className="grid grid-cols-1 gap-1 mt-4">
+          {collections?.map((collection) => {
+            if (!collection) return null;
+            return (
+              <div key={collection._id}>
+                <BranchCollectionLink
+                  branchCollectionId={collection._id}
+                  className="hover:text-zinc-600"
+                >
+                  <div className="p-1">{collection.name}</div>
+                </BranchCollectionLink>
+              </div>
+            );
+          })}
         </div>
       </CardContent>
     </Card>

@@ -2,7 +2,7 @@ import { useAuth } from '@clerk/nextjs';
 import { CheckboxItem } from '@components/core/dropdown/CheckboxItem';
 import { Dropdown } from '@components/core/dropdown/Dropdown';
 import { DropdownItem } from '@components/core/dropdown/DropdownItem';
-import { BranchCollectionLink } from '@components/Links';
+import { BranchCollectionsLink } from '@components/Links';
 import { CodeIcon, ExitIcon } from '@radix-ui/react-icons';
 
 import { AvatarCard } from './AvatarCard';
@@ -23,12 +23,12 @@ export const AvatarButton = () => {
           items: [
             <DropdownItem text="Account" key="1" />,
             <DropdownItem text="Settings" key="2" />,
-            <BranchCollectionLink key={"branch"}>
+            <BranchCollectionsLink key={"branch"}>
               <DropdownItem
                 text="Branch Collections"
                 icon={<CodeIcon />}
               />
-            </BranchCollectionLink>,
+            </BranchCollectionsLink>,
           ],
         },
         {
