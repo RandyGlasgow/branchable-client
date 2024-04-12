@@ -21,8 +21,8 @@ export const AvatarButton = () => {
         {
           label: "Links",
           items: [
-            <DropdownItem text="Account" />,
-            <DropdownItem text="Settings" />,
+            <DropdownItem text="Account" key="1" />,
+            <DropdownItem text="Settings" key="2" />,
             <BranchCollectionLink key={"branch"}>
               <DropdownItem
                 text="Branch Collections"
