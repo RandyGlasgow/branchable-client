@@ -14,7 +14,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
-import type * as organization from "../organization.js";
+import type * as branchCollection from "../branchCollection.js";
 import type * as types_AnyContext from "../types/AnyContext.js";
 import type * as users from "../users.js";
 import type * as utils_auth_validateUserIdentity from "../utils/auth/validateUserIdentity.js";
@@ -29,7 +29,7 @@ import type * as utils_auth_validateUserIsOwnerOfOrganization from "../utils/aut
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  organization: typeof organization;
+  branchCollection: typeof branchCollection;
   "types/AnyContext": typeof types_AnyContext;
   users: typeof users;
   "utils/auth/validateUserIdentity": typeof utils_auth_validateUserIdentity;

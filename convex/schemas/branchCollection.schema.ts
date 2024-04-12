@@ -3,6 +3,7 @@ import { v } from 'convex/values';
 
 export const branch_collection = defineTable({
   name: v.string(),
+  description: v.string(),
   owner: v.id("user"),
 }).index("by_name", ["name"]);
 
