@@ -61,8 +61,9 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
           color="danger"
           onClick={(e) => {
             e.preventDefault();
-            router.push("/branch_collection");
-            deleteBranchCollection({ branchCollectionId });
+            deleteBranchCollection({ branchCollectionId }).then(() => {
+              router.push("/branch_collection");
+            });
           }}
         >
           Delete

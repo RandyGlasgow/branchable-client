@@ -1,5 +1,7 @@
 "use client";
-import { OwnerSettings } from 'pages/branch_collection_single/dialogs/OwnerSettings/OwnerSettings';
+import {
+    OwnerSettings
+} from 'modules/branch_collection_single/dialogs/OwnerSettings/OwnerSettings';
 
 import { Card } from '@components/card/Card';
 import { CardContent } from '@components/card/CardContetn';

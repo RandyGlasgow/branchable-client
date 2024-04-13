@@ -1,4 +1,4 @@
-import { CollectionGrid } from 'pages/branch_collections/CollectionGrid/CollectionGrid';
+import { CollectionGrid } from 'modules/branch_collections/CollectionGrid/CollectionGrid';
 
 import { PageLayout } from '@components/layouts/Page';
 
