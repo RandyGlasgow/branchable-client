@@ -14,10 +14,12 @@ export const Button: FC<ButtonProps> = forwardRef<
   HTMLButtonElement,
   ButtonProps
 >(({ className, children, color, ...props }, ref) => {
+  const buttonType = props.type || "button";
   switch (color) {
     case "neutral":
       return (
         <button
+          type={buttonType}
           ref={ref}
           {...props}
           className={`p-2 rounded shadow-inner-hard shadow-zinc-300 hover:shadow-zinc-400 text-zinc-800
@@ -29,6 +31,7 @@ export const Button: FC<ButtonProps> = forwardRef<
     case "danger":
       return (
         <button
+          type={buttonType}
           ref={ref}
           {...props}
           className={`p-2 rounded shadow-inner-hard shadow-red-500 hover:shadow-red-600
@@ -40,6 +43,7 @@ export const Button: FC<ButtonProps> = forwardRef<
     case "success":
       return (
         <button
+          type={buttonType}
           ref={ref}
           {...props}
           className={`p-2 rounded shadow-inner-hard shadow-green-500 hover:shadow-green-600
@@ -51,6 +55,7 @@ export const Button: FC<ButtonProps> = forwardRef<
     case "warning":
       return (
         <button
+          type={buttonType}
           ref={ref}
           {...props}
           className={`p-2 rounded shadow-inner-hard shadow-yellow-500 hover:shadow-yellow-600
@@ -62,6 +67,7 @@ export const Button: FC<ButtonProps> = forwardRef<
     case "secondary":
       return (
         <button
+          type={buttonType}
           ref={ref}
           {...props}
           className={`p-2 rounded shadow-inner-hard shadow-zinc-500 hover:shadow-zinc-600
@@ -73,6 +79,7 @@ export const Button: FC<ButtonProps> = forwardRef<
     default:
       return (
         <button
+          type={buttonType}
           ref={ref}
           {...props}
           className={`p-2 rounded shadow-inner-hard shadow-blue-500 hover:shadow-blue-800
