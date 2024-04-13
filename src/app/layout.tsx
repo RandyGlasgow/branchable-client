@@ -18,11 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="">
+    <html lang="en" className="bg-zinc-100">
       <body className={"background"}>
         <ProtectedPage>
           <ProtectedConvexPage>
-            <main className="background">
+            <main className="relative min-h-screen">
               <NavigationBar />
               {children}
             </main>

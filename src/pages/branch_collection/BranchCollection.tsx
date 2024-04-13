@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { Card } from '@components/card/Card';
 import { CardContent } from '@components/card/CardContetn';
 import { CardHeader } from '@components/card/CardHeader';
-import { BranchCollectionLink } from '@components/Links';
-import useStoreUserEffect from '@hooks/useStoreUserEffect';
+import { BranchCollectionLink } from '@components/shared/Links';
+import { useUserId } from '@hooks/useStoreUserEffect';
 
 import { api } from '../../../convex/_generated/api';
 import { CreateNewCollectionDialog } from './dialogs/NewCollectionDialog/NewCollectionDialog';
 
 export const BranchCollection = () => {
-  const userId = useStoreUserEffect();
+  const userId = useUserId();
   const collections = useQuery(
     api.branchCollection.get_all_branch_collections,
     userId ? { userId } : "skip"
@@ -20,10 +20,6 @@ export const BranchCollection = () => {
   return (
     <Card>
       <CardContent>
-        <CardHeader
-          left={<h2>Organizations</h2>}
-          right={<CreateNewCollectionDialog />}
-        />
         <div className="grid grid-cols-1 gap-1 mt-4">
           {collections?.map((collection) => {
             if (!collection) return null;

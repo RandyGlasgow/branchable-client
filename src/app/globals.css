@@ -14,7 +14,7 @@
 
 body {
   min-height: 100dvh;
-  @apply min-h-screen text-black bg-gradient-to-br from-zinc-200 to-zinc-100;
+  @apply min-h-screen text-black bg-gradient-to-b from-zinc-50 to-zinc-100;
 }
 
 @layer utilities {
@@ -23,11 +23,36 @@ body {
   }
 }
 
-.background {
-  background-color: #e5e5f7;
-  background-image: radial-gradient(
-    #72727297 0.8px,
-    rgb(250 250 250) 0.5px
-  );
-  background-size: 10px 10px;
+@layer components {
+  .heading-1,
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  .heading-2,
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  .heading-3,
+  h3 {
+    @apply text-xl font-bold;
+  }
+  .heading-4,
+  h4 {
+    @apply text-lg font-bold;
+  }
+  .heading-5,
+  h5 {
+    @apply text-base font-bold;
+  }
+  .heading-6,
+  h6 {
+    @apply text-sm font-bold;
+  }
+}
+
+@layer components {
+  .paragraph,
+  p {
+    @apply text-base text-zinc-800;
+  }
 }

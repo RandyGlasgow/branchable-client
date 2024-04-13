@@ -6,7 +6,7 @@ import { useUser } from '@clerk/nextjs';
 import { api } from '../../convex/_generated/api';
 import { Id } from '../../convex/_generated/dataModel';
 
-export default function useStoreUserEffect() {
+export const useUserId = () => {
   const { isAuthenticated } = useConvexAuth();
   const { user } = useUser();
   // When this state is set we know the server
@@ -33,4 +33,6 @@ export default function useStoreUserEffect() {
     // a different identity
   }, [isAuthenticated, storeUser, user?.id]);
   return userId;
-}
+};
+
+

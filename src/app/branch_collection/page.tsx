@@ -1,16 +1,13 @@
-import { BranchCollection } from 'pages/branch_collection/BranchCollection';
+import { CollectionGrid } from 'pages/branch_collection/CollectionGrid/CollectionGrid';
 
 import { PageLayout } from '@components/layouts/Page';
 
 export default function BranchCollectionsPage() {
   return (
     <PageLayout>
-      <h1>Branch Collections</h1>
-      <p>
-        This is the organization page. You can access this page only if you
-        are authenticated.
-      </p>
-      <BranchCollection />
+      <h1>Your Branch Collections</h1>
+      <p>These are the collections that you own or have access to.</p>
+      <CollectionGrid />
     </PageLayout>
   );
 }

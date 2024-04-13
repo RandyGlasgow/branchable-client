@@ -2,7 +2,7 @@ import exp from 'constants';
 import Link from 'next/link';
 import { ComponentProps, FC } from 'react';
 
-import { Id } from '../../../convex/_generated/dataModel';
+import { Id } from '../../../../convex/_generated/dataModel';
 
 type LinksProps = {} & Omit<ComponentProps<typeof Link>, "href">;
 

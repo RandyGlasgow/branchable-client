@@ -1,6 +1,6 @@
 import { useMutation } from 'convex/react';
-import { FC, useEffect, useMemo, useState } from 'react';
-import { adjectives, animals, colors } from 'unique-names-generator';
+import { FC, useEffect, useState } from 'react';
+import { adjectives, animals } from 'unique-names-generator';
 
 import { Button } from '@components/button/Button';
 import { Close } from '@radix-ui/react-dialog';

@@ -2,6 +2,8 @@ import React, { FC, ReactNode } from 'react';
 
 import * as DropdownComponents from '@radix-ui/react-dropdown-menu';
 
+import { DropdownContent } from './DropdownContent';
+
 type DropdownGroups = {
   label?: string;
   divider?: boolean;
@@ -23,11 +25,7 @@ export const Dropdown: FC<DropdownProps> = ({
     <DropdownComponents.Root>
       {trigger}
       <DropdownComponents.Portal>
-        <DropdownComponents.Content
-          sideOffset={5}
-          className="min-w-44 shadow-lg border border-zinc-200 p-1 rounded bg-zinc-100 bg-opacity-80 backdrop-blur-sm"
-          {...rest}
-        >
+        <DropdownContent sideOffset={5} {...rest}>
           {groups.map((group, index) => (
             <DropdownComponents.Group
               key={index}
@@ -44,7 +42,7 @@ export const Dropdown: FC<DropdownProps> = ({
               {group.items.map((item) => item)}
             </DropdownComponents.Group>
           ))}
-        </DropdownComponents.Content>
+        </DropdownContent>
       </DropdownComponents.Portal>
     </DropdownComponents.Root>
   );

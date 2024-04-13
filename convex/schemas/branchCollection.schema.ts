@@ -10,6 +10,8 @@ export const branch_collection = defineTable({
 export const branch_collection_member = defineTable({
   branch_collection_id: v.id("branch_collection"),
   user_id: v.id("user"),
+  role: v.id("member_roles"),
+  role_alias: v.string(),
 })
   .index("by_branch_collection_id", ["branch_collection_id"])
   .index("by_user_id", ["user_id"]);

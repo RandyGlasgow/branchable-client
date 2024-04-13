@@ -27,11 +27,16 @@ export const create_branch_collection = mutation({
       description: description,
       owner: userId,
     });
-
+    const lookup = await ctx.db
+      .query("member_roles")
+      .filter((q) => q.eq(q.field("name"), "owner"))
+      .unique();
     // add the user as a member of the branch collection
     await ctx.db.insert("branch_collection_member", {
       branch_collection_id: branchCollection,
       user_id: userId,
+      role: lookup!._id,
+      role_alias: lookup!.name,
     });
     return branchCollection;
   },
@@ -48,18 +53,7 @@ export const get_all_branch_collections = query({
       .filter((q) => q.eq(q.field("owner"), userId))
       .collect();
 
-    const memberOf = await ctx.db
-      .query("branch_collection_member")
-      .filter((q) => q.eq(q.field("user_id"), userId))
-      .collect();
-
-    const ids = memberOf.map((m) => m.branch_collection_id);
-
-    // get the branch collections that the user is a member of
-    const branchCollections = await Promise.all(
-      ids.map((id) => ctx.db.get(id))
-    );
-    return [...owned, ...branchCollections];
+    return owned;
   },
 });
 
@@ -68,6 +62,17 @@ export const get_branch_collection = query({
   handler: async (ctx, { branchCollectionId }) => {
     await validateUserIdentity(ctx);
 
-    return ctx.db.get(branchCollectionId);
+    const branchCollection = await ctx.db.get(branchCollectionId);
+    const branchCollectionMembers = await ctx.db
+      .query("branch_collection_member")
+      .withIndex("by_branch_collection_id", (q) =>
+        q.eq("branch_collection_id", branchCollectionId)
+      )
+      .collect();
+
+    return {
+      ...branchCollection,
+      members: branchCollectionMembers.map((m) => m.user_id),
+    };
   },
 });

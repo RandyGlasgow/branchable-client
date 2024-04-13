@@ -1,12 +1,12 @@
 "use client";
-import { AvatarButton } from '../AvatarButton/AvatarButton';
+import { MenuButton } from '../AvatarButton/AvatarButton';
 import { LoginButton } from '../Button/LoginButton';
 
 export const NavigationBar = () => {
   return (
-    <nav className="sticky top-0 bg-zinc-100 min-h-11">
-      <div className="w-full flex justify-end max-w-6xl">
-        <AvatarButton />
+    <nav className="sticky top-0 bg-blue-600 min-h-11 flex justify-center">
+      <div className="w-full flex justify-end items-center max-w-6xl px-2 lg:px-0">
+        <MenuButton />
         <LoginButton />
       </div>
     </nav>

@@ -2,10 +2,10 @@
 
 import { Button } from '@components/button/Button';
 import { PageLayout } from '@components/layouts/Page';
-import useStoreUserEffect from '@hooks/useStoreUserEffect';
+import { useUserId } from '@hooks/useStoreUserEffect';
 
 export default function UserPage() {
-  const id = useStoreUserEffect();
+  const id = useUserId();
   return (
     <PageLayout>
       <h1>{id}</h1>

@@ -1,6 +1,6 @@
 import { useAuth } from '@clerk/nextjs';
 import { Button } from '@components/button/Button';
-import * as Link from '@components/Links';
+import * as Link from '@components/shared/Links';
 
 export const LoginButton = () => {
   const { isSignedIn } = useAuth();
