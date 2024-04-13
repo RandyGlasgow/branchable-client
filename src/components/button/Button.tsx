@@ -20,8 +20,8 @@ export const Button: FC<ButtonProps> = forwardRef<
         <button
           ref={ref}
           {...props}
-          className={`p-2 rounded shadow-inner-hard shadow-zinc-400 hover:shadow-zinc-500
-        bg-zinc-400 hover:bg-zinc-500 text-zinc-50 transition-all flex items-center justify-center ${className}`}
+          className={`p-2 rounded shadow-inner-hard shadow-zinc-300 hover:shadow-zinc-400 text-zinc-800
+        bg-zinc-300 hover:bg-zinc-500 hover:text-zinc-50 transition-all flex items-center justify-center ${className}`}
         >
           {children}
         </button>

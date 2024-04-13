@@ -48,6 +48,7 @@ export const CreateNewCollectionForm: FC = () => {
           type="text"
           value={fromData.name}
           required
+          placeholder="Collection Name (required)"
           onChange={(e) =>
             setFormData({ ...fromData, name: e.target.value })
           }
@@ -65,6 +66,7 @@ export const CreateNewCollectionForm: FC = () => {
         </Button>
       </span>
       <textarea
+        placeholder="Description (optional)"
         value={fromData.description}
         onChange={(e) =>
           setFormData({ ...fromData, description: e.target.value })

@@ -2,9 +2,8 @@ import { AnyDataModel, GenericMutationCtx, GenericQueryCtx, UserIdentity } from 
 
 import { AnyContext } from '../../types/AnyContext';
 
-export const validateUserIdentity = async (
-  ctx: AnyContext
-): Promise<UserIdentity> => {
+/** Returns the user id */
+export const validateUserIdentity = async (ctx: AnyContext) => {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) {
     throw new Error("Called storeUser without authentication present");

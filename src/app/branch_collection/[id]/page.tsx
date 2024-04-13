@@ -1,27 +1,27 @@
 "use client";
-import { useQuery } from 'convex/react';
-import { use } from 'react';
+import { OwnerSettings } from 'pages/branch_collection_single/dialogs/OwnerSettings/OwnerSettings';
 
+import { Card } from '@components/card/Card';
+import { CardContent } from '@components/card/CardContetn';
+import { CardHeader } from '@components/card/CardHeader';
 import { PageLayout } from '@components/layouts/Page';
-import { useUserId } from '@hooks/useStoreUserEffect';
+import { useGetBranchCollection } from '@hooks/queries/useGetBranchCollection';
 
 import { PageProps } from '../../../../.next/types/app/layout';
-import { api } from '../../../../convex/_generated/api';
-import { Id } from '../../../../convex/_generated/dataModel';
 
 export default function BranchCollectionPage({
   params: { id },
 }: PageProps) {
-  const userId = useUserId();
-  const collection = useQuery(
-    api.branchCollection.get_branch_collection,
-    userId ? { branchCollectionId: id } : "skip"
-  );
+  const collection = useGetBranchCollection(id);
   return (
     <PageLayout>
-      <h1>Collection: {collection?.name}</h1>
-
-      <div>{JSON.stringify(collection, null, 2)}</div>
+      <Card>
+        <CardContent>
+          <CardHeader right={<OwnerSettings id={id} />}>
+            <h1>Collection: {collection?.name}</h1>
+          </CardHeader>
+        </CardContent>
+      </Card>
     </PageLayout>
   );
 }

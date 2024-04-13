@@ -22,7 +22,7 @@ export const create_branch_collection = mutation({
 
     const userId = user?._id!;
     // create the branch collection
-    const branchCollection = await ctx.db.insert("branch_collection", {
+    const branchCollectionId = await ctx.db.insert("branch_collection", {
       name,
       description: description,
       owner: userId,
@@ -30,15 +30,19 @@ export const create_branch_collection = mutation({
     const lookup = await ctx.db
       .query("member_roles")
       .filter((q) => q.eq(q.field("name"), "owner"))
-      .unique();
+      .first();
+
+    if (!lookup) {
+      throw new Error("Owner role not found");
+    }
     // add the user as a member of the branch collection
     await ctx.db.insert("branch_collection_member", {
-      branch_collection_id: branchCollection,
+      branch_collection_id: branchCollectionId,
       user_id: userId,
-      role: lookup!._id,
-      role_alias: lookup!.name,
+      role: lookup._id,
+      role_alias: lookup.name,
     });
-    return branchCollection;
+    return branchCollectionId;
   },
 });
 
@@ -70,9 +74,80 @@ export const get_branch_collection = query({
       )
       .collect();
 
+    if (!branchCollection) {
+      throw new Error("Branch collection not found");
+    }
+
     return {
       ...branchCollection,
       members: branchCollectionMembers.map((m) => m.user_id),
     };
+  },
+});
+
+export const update_branch_collection = mutation({
+  args: {
+    branchCollectionId: v.id("branch_collection"),
+    name: v.optional(v.string()),
+    description: v.optional(v.string()),
+  },
+  handler: async (ctx, { branchCollectionId, name, description }) => {
+    const identity = await validateUserIdentity(ctx);
+
+    const user = await ctx.db
+      .query("user")
+      .withIndex("by_token", (q) =>
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .unique();
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    await validateUserIsOwnerOfBranchCollection(
+      ctx,
+      user._id,
+      branchCollectionId
+    );
+
+    await ctx.db.patch(branchCollectionId, {
+      name,
+      description,
+    });
+  },
+});
+
+export const delete_branch_collection = mutation({
+  args: { branchCollectionId: v.id("branch_collection") },
+  handler: async (ctx, { branchCollectionId }) => {
+    const identity = await validateUserIdentity(ctx);
+
+    const user = await ctx.db
+      .query("user")
+      .withIndex("by_token", (q) =>
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .unique();
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    await validateUserIsOwnerOfBranchCollection(
+      ctx,
+      user._id,
+      branchCollectionId
+    );
+
+    const memberRegistrationsToDelete = await ctx.db
+      .query("branch_collection_member")
+      .withIndex("by_branch_collection_id", (q) =>
+        q.eq("branch_collection_id", branchCollectionId)
+      )
+      .collect();
+    await Promise.all(
+      memberRegistrationsToDelete.map((m) => ctx.db.delete(m._id))
+    );
+
+    await ctx.db.delete(branchCollectionId);
   },
 });

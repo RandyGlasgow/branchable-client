@@ -10,7 +10,11 @@ export const CreateNewCollectionDialog = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <Button className="p-0 py-2 ">
+        <Button
+          className="px-2 p-2 py-2 flex justify-center gap-2"
+          title="create new collection"
+        >
+          <span className="hidden md:block">New Collection</span>
           <PlusIcon />
         </Button>
       </Dialog.Trigger>
