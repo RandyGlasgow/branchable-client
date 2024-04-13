@@ -1,7 +1,7 @@
 import { useAuth } from '@clerk/nextjs';
-import { CheckboxItem } from '@components/core/dropdown/CheckboxItem';
-import { Dropdown } from '@components/core/dropdown/Dropdown';
-import { DropdownItem } from '@components/core/dropdown/DropdownItem';
+import { CheckboxItem } from '@components/dropdown/CheckboxItem';
+import { Dropdown } from '@components/dropdown/Dropdown';
+import { DropdownItem } from '@components/dropdown/DropdownItem';
 import { BranchCollectionsLink } from '@components/Links';
 import { CodeIcon, ExitIcon } from '@radix-ui/react-icons';
 

@@ -2,14 +2,14 @@
 import { useQueries, useQuery } from 'convex/react';
 import Link from 'next/link';
 
-import { Card } from '@components/core/card/Card';
-import { CardContent } from '@components/core/card/CardContetn';
-import { CardHeader } from '@components/core/card/CardHeader';
+import { Card } from '@components/card/Card';
+import { CardContent } from '@components/card/CardContetn';
+import { CardHeader } from '@components/card/CardHeader';
 import { BranchCollectionLink } from '@components/Links';
 import useStoreUserEffect from '@hooks/useStoreUserEffect';
 
-import { api } from '../../../../convex/_generated/api';
-import { CreateNewCollectionDialog } from '../CreateNewCollectionDialog/CreateNewCollectionDialog';
+import { api } from '../../../convex/_generated/api';
+import { CreateNewCollectionDialog } from './dialogs/NewCollectionDialog/NewCollectionDialog';
 
 export const BranchCollection = () => {
   const userId = useStoreUserEffect();

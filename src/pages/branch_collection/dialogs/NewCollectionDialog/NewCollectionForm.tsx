@@ -2,11 +2,11 @@ import { useMutation } from 'convex/react';
 import { FC, useEffect, useMemo, useState } from 'react';
 import { adjectives, animals, colors } from 'unique-names-generator';
 
-import { Button } from '@components/core/Button';
+import { Button } from '@components/button/Button';
 import { Close } from '@radix-ui/react-dialog';
 import { ReloadIcon } from '@radix-ui/react-icons';
 
-import { api } from '../../../../convex/_generated/api';
+import { api } from '../../../../../convex/_generated/api';
 
 const createRandomName = () => {
   const maxLenAdj = adjectives.length;

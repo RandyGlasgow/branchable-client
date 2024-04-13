@@ -1,4 +1,4 @@
-import { Avatar } from '@components/core/avatar/Avatar';
+import { Avatar } from '@components/avatar/Avatar';
 import useStoreUserEffect from '@hooks/useStoreUserEffect';
 import { useUserSettings } from '@hooks/useUserSettings';
 import { Trigger } from '@radix-ui/react-dropdown-menu';

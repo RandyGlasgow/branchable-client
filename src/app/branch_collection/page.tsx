@@ -1,6 +1,5 @@
-import {
-    BranchCollection
-} from '@components/BranchCollection/BranchCollectionGrid/BranchCollection';
+import { BranchCollection } from 'pages/branch_collection/BranchCollection';
+
 import { PageLayout } from '@components/layouts/Page';
 
 export default function BranchCollectionsPage() {
