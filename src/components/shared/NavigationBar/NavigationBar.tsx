@@ -4,7 +4,7 @@ import { LoginButton } from '../Button/LoginButton';
 
 export const NavigationBar = () => {
   return (
-    <nav className="min-h-14 flex justify-center align-middle backdrop-blur-lg bg-opacity-90 p-2 lg:px-0 bg-zinc-50 sticky top-0">
+    <nav className="sticky top-0 bg-zinc-100 min-h-11">
       <div className="w-full flex justify-end max-w-6xl">
         <AvatarButton />
         <LoginButton />

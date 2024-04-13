@@ -25,7 +25,6 @@ body {
 
 .background {
   background-color: #e5e5f7;
-  opacity: 0.8;
   background-image: radial-gradient(
     #72727297 0.8px,
     rgb(250 250 250) 0.5px
