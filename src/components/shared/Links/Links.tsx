@@ -1,6 +1,6 @@
 import exp from 'constants';
 import Link from 'next/link';
-import { ComponentProps, FC } from 'react';
+import { ComponentProps, FC, forwardRef } from 'react';
 
 import { Id } from '../../../../convex/_generated/dataModel';
 
@@ -25,12 +25,20 @@ export const BranchCollectionsLink: FC<LinksProps> = ({
   );
 };
 
-export const BranchCollectionLink: FC<
+export const BranchCollectionLink = forwardRef<
+  HTMLAnchorElement,
   { branchCollectionId: Id<"branch_collection"> } & LinksProps
-> = ({ branchCollectionId, children, ...props }) => {
+>(({ branchCollectionId, children, ...props }, ref) => {
   return (
-    <Link href={`/branch_collection/${branchCollectionId}`} {...props}>
+    <Link
+      href={`/branch_collection/${branchCollectionId}`}
+      {...props}
+      ref={ref}
+    >
       {children}
     </Link>
   );
-};
+});
+
+BranchCollectionLink.displayName = "BranchCollectionLink";
+

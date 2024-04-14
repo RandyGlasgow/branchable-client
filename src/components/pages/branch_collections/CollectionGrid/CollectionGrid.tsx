@@ -6,14 +6,14 @@ import { FC } from 'react';
 import { Card } from '@components/core/card/Card';
 import { CardContent } from '@components/core/card/CardContetn';
 import { CardHeader } from '@components/core/card/CardHeader';
-import { Chip } from '@components/core/chip/Chip';
-import { BranchCollectionLink, BranchCollectionsLink } from '@components/shared/Links';
+import { BranchCollectionsLink } from '@components/shared/Links';
 import { useUserId } from '@hooks/useStoreUserEffect';
-import { ExternalLinkIcon, FaceIcon, GroupIcon } from '@radix-ui/react-icons';
+import { GroupIcon } from '@radix-ui/react-icons';
 
 import { api } from '../../../../../convex/_generated/api';
-import { Doc, Id } from '../../../../../convex/_generated/dataModel';
+import { Doc } from '../../../../../convex/_generated/dataModel';
 import { CreateNewCollectionDialog } from '../dialogs/NewCollectionDialog/NewCollectionDialog';
+import { CollectionCard } from './CollectionCard';
 
 type CollectionGridProps = {};
 export const CollectionGrid: FC<CollectionGridProps> = () => {
@@ -49,45 +49,3 @@ export const CollectionGrid: FC<CollectionGridProps> = () => {
   );
 };
 
-const CollectionCard = ({
-  collectionId,
-}: {
-  collectionId: Id<"branch_collection">;
-}) => {
-  const userId = useUserId();
-  const branchCollection = useQuery(
-    api.branchCollection.get_branch_collection,
-    collectionId ? { branchCollectionId: collectionId } : "skip"
-  );
-
-  const ownerId = branchCollection?.owner;
-  const isOwner = userId === ownerId;
-
-  const isMember = branchCollection?.members.includes(userId!) && !isOwner;
-  if (!branchCollection) return null;
-  return (
-    <BranchCollectionLink branchCollectionId={branchCollection!._id!}>
-      <Card className="group">
-        <CardContent>
-          <CardHeader
-            className="text-xl font-bold flex items-center group-hover:text-blue-500"
-            right={<ExternalLinkIcon className="scale-125" />}
-          >
-            {branchCollection!.name}
-          </CardHeader>
-          <div className="flex justify-between">
-            <span>
-              {isOwner && <Chip className="bg-blue-400">Owner</Chip>}
-              {isMember && <Chip className="bg-indigo-500">Member</Chip>}
-            </span>
-            <span className="flex items-center gap-2" title="members">
-              <FaceIcon />
-              {branchCollection?.members.length}
-            </span>
-          </div>
-          <p>{branchCollection?.description}</p>
-        </CardContent>
-      </Card>
-    </BranchCollectionLink>
-  );
-};
