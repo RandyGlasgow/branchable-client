@@ -10,7 +10,7 @@ export const ButtonDanger: FC<ButtonProps> = forwardRef<
     <button
       ref={ref}
       {...props}
-      className={`p-2 hover:bg-red-500 bg-red-200 rounded hover:shadow-inner shadow-inner-hard transition-all text-red-700 hover:text-red-50 flex gap-2 items-center ${className}`}
+      className={`p-2 hover:bg-red-500 bg-red-200 rounded  hover:shadow-inner hover:shadow-red-800/30 transition-all text-red-700 hover:text-red-50 flex gap-2 items-center ${className}`}
     >
       {children}
     </button>

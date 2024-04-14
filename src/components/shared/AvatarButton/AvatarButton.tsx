@@ -2,12 +2,12 @@ import { useRouter } from 'next/navigation';
 import { Router } from 'next/router';
 
 import { useAuth } from '@clerk/nextjs';
-import { Button } from '@components/core/button/Button';
+import { Button, ButtonDanger, ButtonNeutral } from '@components/core/button/Button';
 import { CheckboxItem } from '@components/core/dropdown/CheckboxItem';
 import { Dropdown } from '@components/core/dropdown/Dropdown';
 import { DropdownItem } from '@components/core/dropdown/DropdownItem';
 import { BranchCollectionsLink } from '@components/shared/Links';
-import { Trigger } from '@radix-ui/react-dropdown-menu';
+import { DropdownMenuItem, Trigger } from '@radix-ui/react-dropdown-menu';
 import { CodeIcon, ExitIcon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 
 import { AvatarCard } from './AvatarCard';
@@ -27,31 +27,35 @@ export const MenuButton = () => {
         {
           label: "Links",
           items: [
-            <DropdownItem text="Account" key="1" />,
-            <DropdownItem text="Settings" key="2" />,
+            <DropdownMenuItem key={"profile"}>
+              <ButtonNeutral className="w-full justify-between py-1 bg-inherit border-none">
+                Profile
+              </ButtonNeutral>
+            </DropdownMenuItem>,
+
             <BranchCollectionsLink key={"branch"}>
-              <DropdownItem
-                text="Branch Collections"
-                icon={<CodeIcon />}
-              />
+              <DropdownMenuItem>
+                <ButtonNeutral className="w-full justify-between py-1 bg-inherit border-none">
+                  Branch Collections <CodeIcon />
+                </ButtonNeutral>
+              </DropdownMenuItem>
             </BranchCollectionsLink>,
           ],
         },
         {
           divider: true,
           items: [
-            <CheckboxItem
-              onClick={(e) => {
-                e.preventDefault();
-                signOut();
-                router.push("/");
-              }}
-              icon={<ExitIcon />}
-              text="Logout"
-              key={"logout"}
-              side={"right"}
-              className="bg-red-100 text-red-500 hover:bg-red-400 hover:text-white"
-            />,
+            <DropdownMenuItem key={"logout"} asChild>
+              <ButtonDanger
+                onClick={() => {
+                  signOut();
+                  router.push("/");
+                }}
+                className="w-full justify-between py-1"
+              >
+                Logout <ExitIcon />
+              </ButtonDanger>
+            </DropdownMenuItem>,
           ],
         },
       ]}

@@ -13,7 +13,7 @@ export const DropdownItem: FC<DefaultItem> = (props) => {
   return (
     <DropdownComponents.Item
       {...rest}
-      className={`px-1 rounded-sm transition-all duration-75 flex justify-between items-center gap-1 outline-none cursor-pointer hover:bg-zinc-300 py-1 text-sm ${className}`}
+      className={`px-1 rounded-sm transition-all duration-75 flex justify-between items-center gap-4 outline-none cursor-pointer hover:bg-zinc-300 py-1 text-sm ${className}`}
     >
       {icon && side === "left" && icon}
       {text}

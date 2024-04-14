@@ -64,9 +64,9 @@ export const CollectionCard = ({
           </BranchCollectionLink>
         </Tooltip.Trigger>
         <Tooltip.Portal>
-          <Tooltip.Content side="bottom" sideOffset={5}>
+          <Tooltip.Content side="bottom">
             <Tooltip.Arrow className="fill-white" />
-            <Card className="min-w-52">
+            <Card className="min-w-52 shadow-2xl">
               <CardContent>
                 <CardHeader className="w-full">
                   <h6>Details</h6>
