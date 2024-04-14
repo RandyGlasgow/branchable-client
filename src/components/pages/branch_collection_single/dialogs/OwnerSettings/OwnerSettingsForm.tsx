@@ -3,6 +3,8 @@ import { useRouter } from 'next/navigation';
 import { FC, MouseEventHandler, useState } from 'react';
 
 import { Button } from '@components/core/button/Button';
+import { ButtonDanger } from '@components/core/button/ButtonDanger';
+import { ButtonNeutral } from '@components/core/button/ButtonNeutral';
 import { TextInput } from '@components/inputs/TextInput';
 import { useGetBranchCollection } from '@hooks/queries/useGetBranchCollection';
 import { Close } from '@radix-ui/react-dialog';
@@ -55,9 +57,9 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
         placeholder="Description (optional)"
         value={intermediateData?.description}
       />
-      <span className="flex justify-end items-center gap-2">
-        <Button
-          color="danger"
+      <span className="flex justify-between items-center gap-2">
+        <ButtonDanger
+          className="justify-self-start"
           onClick={(e) => {
             e.preventDefault();
             deleteBranchCollection({
@@ -68,24 +70,25 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
           }}
         >
           Delete
-        </Button>
-
-        <Close asChild>
-          <Button color="neutral">Cancel</Button>
-        </Close>
-        <Close asChild>
-          <Button
-            onClick={(e) => {
-              updateBranchCollection({
-                branchCollectionId: collection._id,
-                ...intermediateData,
-              });
-            }}
-            type="submit"
-          >
-            Save
-          </Button>
-        </Close>
+        </ButtonDanger>
+        <span className="flex items-center gap-2">
+          <Close asChild>
+            <ButtonNeutral>Cancel</ButtonNeutral>
+          </Close>
+          <Close asChild>
+            <Button
+              onClick={(e) => {
+                updateBranchCollection({
+                  branchCollectionId: collection._id,
+                  ...intermediateData,
+                });
+              }}
+              type="submit"
+            >
+              Save
+            </Button>
+          </Close>
+        </span>
       </span>
     </form>
   );
