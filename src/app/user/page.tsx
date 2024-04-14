@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from '@components/button/Button';
+import { Button } from '@components/core/button/Button';
 import { PageLayout } from '@components/layouts/Page';
 import { useUserId } from '@hooks/useStoreUserEffect';
 

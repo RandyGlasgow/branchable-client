@@ -3,16 +3,16 @@
 import { useQuery } from 'convex/react';
 import { FC } from 'react';
 
-import { Card } from '@components/card/Card';
-import { CardContent } from '@components/card/CardContetn';
-import { CardHeader } from '@components/card/CardHeader';
-import { Chip } from '@components/chip/Chip';
+import { Card } from '@components/core/card/Card';
+import { CardContent } from '@components/core/card/CardContetn';
+import { CardHeader } from '@components/core/card/CardHeader';
+import { Chip } from '@components/core/chip/Chip';
 import { BranchCollectionLink, BranchCollectionsLink } from '@components/shared/Links';
 import { useUserId } from '@hooks/useStoreUserEffect';
 import { ExternalLinkIcon, FaceIcon, GroupIcon } from '@radix-ui/react-icons';
 
-import { api } from '../../../../convex/_generated/api';
-import { Doc, Id } from '../../../../convex/_generated/dataModel';
+import { api } from '../../../../../convex/_generated/api';
+import { Doc, Id } from '../../../../../convex/_generated/dataModel';
 import { CreateNewCollectionDialog } from '../dialogs/NewCollectionDialog/NewCollectionDialog';
 
 type CollectionGridProps = {};

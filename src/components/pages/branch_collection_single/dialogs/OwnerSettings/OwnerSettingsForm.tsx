@@ -2,21 +2,20 @@ import { useMutation, useQuery } from 'convex/react';
 import { useRouter } from 'next/navigation';
 import { FC, MouseEventHandler, useState } from 'react';
 
-import { Button } from '@components/button/Button';
+import { Button } from '@components/core/button/Button';
 import { TextInput } from '@components/inputs/TextInput';
 import { useGetBranchCollection } from '@hooks/queries/useGetBranchCollection';
 import { Close } from '@radix-ui/react-dialog';
 
-import { api } from '../../../../../convex/_generated/api';
-import { Id } from '../../../../../convex/_generated/dataModel';
+import { api } from '../../../../../../convex/_generated/api';
+import { Doc, Id } from '../../../../../../convex/_generated/dataModel';
 
 type OwnerSettingsFormProps = {
-  branchCollectionId: Id<"branch_collection">;
+  collection: Doc<"branch_collection">;
 };
 export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
-  branchCollectionId,
+  collection,
 }) => {
-  const branchCollection = useGetBranchCollection(branchCollectionId);
   const updateBranchCollection = useMutation(
     api.branchCollection.update_branch_collection
   );
@@ -28,8 +27,8 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
   const router = useRouter();
 
   const [intermediateData, setIntermediateData] = useState({
-    name: branchCollection?.name,
-    description: branchCollection?.description,
+    name: collection?.name,
+    description: collection?.description,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +60,9 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
           color="danger"
           onClick={(e) => {
             e.preventDefault();
-            deleteBranchCollection({ branchCollectionId }).then(() => {
+            deleteBranchCollection({
+              branchCollectionId: collection._id,
+            }).then(() => {
               router.push("/branch_collection");
             });
           }}
@@ -76,7 +77,7 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
           <Button
             onClick={(e) => {
               updateBranchCollection({
-                branchCollectionId,
+                branchCollectionId: collection._id,
                 ...intermediateData,
               });
             }}

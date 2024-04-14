@@ -10,7 +10,6 @@ import { Id } from '../../../convex/_generated/dataModel';
 export const useGetBranchCollection = (
   branchCollectionId: Id<"branch_collection">
 ) => {
-  const router = useRouter();
   const userId = useUserId();
   const branchCollection = useQuery(
     api.branchCollection.get_branch_collection,
@@ -18,7 +17,6 @@ export const useGetBranchCollection = (
       ? { branchCollectionId: branchCollectionId }
       : "skip"
   );
-  const ref = useRef(false);
 
   return branchCollection;
 };

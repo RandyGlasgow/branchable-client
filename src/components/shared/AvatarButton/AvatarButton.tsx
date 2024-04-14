@@ -2,10 +2,10 @@ import { useRouter } from 'next/navigation';
 import { Router } from 'next/router';
 
 import { useAuth } from '@clerk/nextjs';
-import { Button } from '@components/button/Button';
-import { CheckboxItem } from '@components/dropdown/CheckboxItem';
-import { Dropdown } from '@components/dropdown/Dropdown';
-import { DropdownItem } from '@components/dropdown/DropdownItem';
+import { Button } from '@components/core/button/Button';
+import { CheckboxItem } from '@components/core/dropdown/CheckboxItem';
+import { Dropdown } from '@components/core/dropdown/Dropdown';
+import { DropdownItem } from '@components/core/dropdown/DropdownItem';
 import { BranchCollectionsLink } from '@components/shared/Links';
 import { Trigger } from '@radix-ui/react-dropdown-menu';
 import { CodeIcon, ExitIcon, HamburgerMenuIcon } from '@radix-ui/react-icons';

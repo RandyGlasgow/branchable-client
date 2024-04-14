@@ -1,6 +1,5 @@
-import { CollectionGrid } from 'modules/branch_collections/CollectionGrid/CollectionGrid';
-
 import { PageLayout } from '@components/layouts/Page';
+import { CollectionGrid } from '@components/pages/branch_collections/CollectionGrid/CollectionGrid';
 
 export default function BranchCollectionsPage() {
   return (

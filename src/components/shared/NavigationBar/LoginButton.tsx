@@ -1,5 +1,5 @@
 import { useAuth } from '@clerk/nextjs';
-import { Button } from '@components/button/Button';
+import { Button } from '@components/core/button/Button';
 import * as Link from '@components/shared/Links';
 
 export const LoginButton = () => {

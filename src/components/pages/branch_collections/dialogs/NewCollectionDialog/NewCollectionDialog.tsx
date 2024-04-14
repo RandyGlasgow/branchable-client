@@ -1,6 +1,6 @@
-import { Button } from '@components/button/Button';
-import { CardHeader } from '@components/card/CardHeader';
-import { DialogContent, DialogOverlay } from '@components/dialog/Dialog';
+import { Button } from '@components/core/button/Button';
+import { CardHeader } from '@components/core/card/CardHeader';
+import { DialogContent, DialogOverlay } from '@components/core/dialog/Dialog';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross1Icon, PlusIcon } from '@radix-ui/react-icons';
 
