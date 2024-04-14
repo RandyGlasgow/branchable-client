@@ -59,6 +59,7 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
       />
       <span className="flex justify-between items-center gap-2">
         <ButtonDanger
+          type="button"
           className="justify-self-start"
           onClick={(e) => {
             e.preventDefault();
@@ -80,7 +81,8 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
               onClick={(e) => {
                 updateBranchCollection({
                   branchCollectionId: collection._id,
-                  ...intermediateData,
+                  description: intermediateData.description,
+                  name: intermediateData.name,
                 });
               }}
               type="submit"

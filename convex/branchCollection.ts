@@ -100,6 +100,7 @@ export const update_branch_collection = mutation({
         q.eq("tokenIdentifier", identity.tokenIdentifier)
       )
       .unique();
+
     if (!user) {
       throw new Error("User not found");
     }

@@ -4,11 +4,11 @@ import { AnyContext } from '../../types/AnyContext';
 export const validateUserIsOwnerOfBranchCollection = async (
   ctx: AnyContext,
   userId: Id<"user">,
-  organizationId: Id<"branch_collection">
+  branchCollectionId: Id<"branch_collection">
 ) => {
-  const organization = await ctx.db.get(organizationId);
+  const branchCollection = await ctx.db.get(branchCollectionId);
 
-  if (organization.owner !== userId) {
+  if (branchCollection.owner !== userId) {
     throw new Error("User is not the owner of the organization");
   }
 };
