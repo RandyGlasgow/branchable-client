@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import { adjectives, animals } from 'unique-names-generator';
 
 import { Button } from '@components/core/button/Button';
+import { TextArea } from '@components/core/inputs/TextArea';
 import { Close } from '@radix-ui/react-dialog';
 import { ReloadIcon } from '@radix-ui/react-icons';
 
@@ -65,13 +66,12 @@ export const CreateNewCollectionForm: FC = () => {
           <ReloadIcon />
         </Button>
       </span>
-      <textarea
+      <TextArea
         placeholder="Description (optional)"
         value={fromData.description}
         onChange={(e) =>
           setFormData({ ...fromData, description: e.target.value })
         }
-        className="w-full p-1 shadow-inner bg-zinc-100 text-sm text-zinc-600 rounded focus:ring-2 focus:ring-primary focus:outline-none"
       />
 
       <Button

@@ -2,6 +2,7 @@ import exp from 'constants';
 import { v } from 'convex/values';
 
 import { mutation, query } from './_generated/server';
+import { BranchStates } from './constants/branchStates';
 import { validateUserIdentity } from './utils/auth/validateUserIdentity';
 import {
     validateUserIsOwnerOfBranchCollection
@@ -150,5 +151,79 @@ export const delete_branch_collection = mutation({
     );
 
     await ctx.db.delete(branchCollectionId);
+  },
+});
+
+export const add_branch_to_collection = mutation({
+  args: {
+    branchCollectionId: v.id("branch_collection"),
+    name: v.string(),
+  },
+  handler: async (ctx, { branchCollectionId, name }) => {
+    const identity = await validateUserIdentity(ctx);
+
+    const user = await ctx.db
+      .query("user")
+      .withIndex("by_token", (q) =>
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .unique();
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // verify that the user is a owner of the branch collection
+    await validateUserIsOwnerOfBranchCollection(
+      ctx,
+      user._id,
+      branchCollectionId
+    );
+
+    // create the branch
+    const branchId = await ctx.db.insert("branch_collection_branch", {
+      name,
+      branch_collection_id: branchCollectionId,
+      used_by: user._id,
+      date_ended: "",
+      date_started: "",
+      state: BranchStates.INACTIVE,
+    });
+
+    return branchId;
+  },
+});
+
+export const get_branches_for_collection = query({
+  args: { branchCollectionId: v.id("branch_collection") },
+  handler: async (ctx, { branchCollectionId }) => {
+    const identity = await validateUserIdentity(ctx);
+
+    const user = await ctx.db
+      .query("user")
+      .withIndex("by_token", (q) =>
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .unique();
+
+    // validat the user is a member of the branch collection
+    const members = await ctx.db
+      .query("branch_collection_member")
+      .withIndex("by_branch_collection_id", (q) =>
+        q.eq("branch_collection_id", branchCollectionId)
+      )
+      .collect();
+
+    const isMember = members.some((m) => m.user_id === user?._id);
+
+    if (!isMember) {
+      throw new Error("User is not a member of the branch collection");
+    }
+
+    return ctx.db
+      .query("branch_collection_branch")
+      .filter((q) =>
+        q.eq(q.field("branch_collection_id"), branchCollectionId)
+      )
+      .collect();
   },
 });

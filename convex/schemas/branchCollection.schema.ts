@@ -15,3 +15,15 @@ export const branch_collection_member = defineTable({
 })
   .index("by_branch_collection_id", ["branch_collection_id"])
   .index("by_user_id", ["user_id"]);
+
+export const branch_collection_branch = defineTable({
+  name: v.string(),
+  branch_collection_id: v.id("branch_collection"),
+  used_by: v.id("user"),
+  // date started
+  date_started: v.string(),
+  // date ended
+  date_ended: v.string(),
+
+  state: v.string(),
+}).index("by_branch_collection_id", ["branch_collection_id"]);
