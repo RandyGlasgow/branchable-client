@@ -1,11 +1,12 @@
 import { useMutation, useQuery } from 'convex/react';
 import { useRouter } from 'next/navigation';
-import { FC, MouseEventHandler, useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, FC, MouseEventHandler, useState } from 'react';
 
 import { Button } from '@components/core/button/Button';
 import { ButtonDanger } from '@components/core/button/ButtonDanger';
 import { ButtonNeutral } from '@components/core/button/ButtonNeutral';
-import { TextInput } from '@components/inputs/TextInput';
+import { TextArea } from '@components/core/inputs/TextArea';
+import { TextInput } from '@components/core/inputs/TextInput';
 import { useGetBranchCollection } from '@hooks/queries/useGetBranchCollection';
 import { Close } from '@radix-ui/react-dialog';
 
@@ -33,7 +34,9 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
     description: collection?.description,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     setIntermediateData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -51,7 +54,7 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
           name="name"
         />
       </label>
-      <TextInput
+      <TextArea
         name="description"
         onChange={handleChange}
         placeholder="Description (optional)"
@@ -62,12 +65,10 @@ export const OwnerSettingsForm: FC<OwnerSettingsFormProps> = ({
           type="button"
           className="justify-self-start"
           onClick={(e) => {
-            e.preventDefault();
+            router.push("/branch_collection");
             deleteBranchCollection({
               branchCollectionId: collection._id,
-            }).then(() => {
-              router.push("/branch_collection");
-            });
+            }).then(() => {});
           }}
         >
           Delete
