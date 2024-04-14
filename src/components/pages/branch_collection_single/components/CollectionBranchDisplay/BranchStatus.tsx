@@ -13,23 +13,28 @@ export const BranchStatus: FC<
   return (
     <>
       {status === "inactive" && (
-        <Chip className="bg-zinc-500" {...rest}>
+        <Chip className="bg-zinc-500 text-white" {...rest}>
           Inactive
         </Chip>
       )}
       {status === "available" && (
-        <Chip className="bg-green-500" {...rest}>
+        <Chip className="bg-green-500 text-white" {...rest}>
           Available
         </Chip>
       )}
       {status === "taken" && (
-        <Chip className="bg-amber-500" {...rest}>
+        <Chip className="bg-amber-500 text-white" {...rest}>
           Unavailable
         </Chip>
       )}
       {status === "under_review" && (
-        <Chip className="bg-purple-500" {...rest}>
+        <Chip className="bg-purple-500 text-white" {...rest}>
           Under Review
+        </Chip>
+      )}
+      {status === "completed" && (
+        <Chip className="bg-blue-500 text-white" {...rest}>
+          Completed
         </Chip>
       )}
     </>

@@ -31,6 +31,7 @@ export const branch_collection_branch = defineTable({
     v.literal(BranchStates.ACTIVE),
     v.literal(BranchStates.INACTIVE),
     v.literal(BranchStates.AVAILABLE),
-    v.literal(BranchStates.UNDER_REVIEW)
+    v.literal(BranchStates.UNDER_REVIEW),
+    v.literal(BranchStates.COMPLETED)
   ),
 }).index("by_branch_collection_id", ["branch_collection_id"]);

@@ -244,7 +244,8 @@ export const update_branch_status = mutation({
       v.literal(BranchStates.ACTIVE),
       v.literal(BranchStates.INACTIVE),
       v.literal(BranchStates.AVAILABLE),
-      v.literal(BranchStates.UNDER_REVIEW)
+      v.literal(BranchStates.UNDER_REVIEW),
+      v.literal(BranchStates.COMPLETED)
     ),
   },
   handler: async (ctx, { branchId, state }) => {
@@ -260,20 +261,66 @@ export const update_branch_status = mutation({
       throw new Error("User not found");
     }
 
+    // validate user is a member of the branch collection
+    const isMember = await ctx.db
+      .query("branch_collection_member")
+      .withIndex("by_user_id", (q) => q.eq("user_id", user._id))
+      .first();
+
+    if (!isMember) {
+      throw new Error("User is not a member of the branch collection");
+    }
+
     const branch = await ctx.db.get(branchId);
 
     if (!branch) {
       throw new Error("Branch not found");
     }
 
-    await validateUserIsOwnerOfBranchCollection(
-      ctx,
-      user._id,
-      branch.branch_collection_id
-    );
-
     await ctx.db.patch(branchId, {
       state,
+    });
+  },
+});
+
+export const reset_branch = mutation({
+  args: {
+    branchId: v.id("branch_collection_branch"),
+  },
+  handler: async (ctx, { branchId }) => {
+    const identity = await validateUserIdentity(ctx);
+
+    const user = await ctx.db
+      .query("user")
+      .withIndex("by_token", (q) =>
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .unique();
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // validate user is a member of the branch collection
+    const isMember = await ctx.db
+      .query("branch_collection_member")
+      .withIndex("by_user_id", (q) => q.eq("user_id", user._id))
+      .first();
+
+    if (!isMember) {
+      throw new Error("User is not a member of the branch collection");
+    }
+
+    const branch = await ctx.db.get(branchId);
+
+    if (!branch) {
+      throw new Error("Branch not found");
+    }
+
+    await ctx.db.patch(branchId, {
+      state: BranchStates.AVAILABLE,
+      date_ended: "",
+      date_started: "",
+      used_by: user._id,
     });
   },
 });
