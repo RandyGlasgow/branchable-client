@@ -1,6 +1,8 @@
 import { defineTable } from 'convex/server';
 import { v } from 'convex/values';
 
+import { BranchStates } from '../constants/branchStates';
+
 export const branch_collection = defineTable({
   name: v.string(),
   description: v.string(),
@@ -25,5 +27,9 @@ export const branch_collection_branch = defineTable({
   // date ended
   date_ended: v.string(),
 
-  state: v.string(),
+  state: v.union(
+    v.literal(BranchStates.ACTIVE),
+    v.literal(BranchStates.INACTIVE),
+    v.literal(BranchStates.AVAILABLE)
+  ),
 }).index("by_branch_collection_id", ["branch_collection_id"]);

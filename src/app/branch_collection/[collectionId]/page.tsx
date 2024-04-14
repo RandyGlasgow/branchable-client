@@ -8,6 +8,9 @@ import { CardContent } from '@components/core/card/CardContetn';
 import { CardHeader } from '@components/core/card/CardHeader';
 import { PageLayout } from '@components/layouts/Page';
 import {
+    CollectionBranchDisplay
+} from '@components/pages/branch_collection_single/components/CollectionBranchDisplay/CollectionBranchDisplay';
+import {
     AddNewBranch
 } from '@components/pages/branch_collection_single/dialogs/AddNewBranch/AddNewBranch';
 import {
@@ -51,10 +54,10 @@ export default function BranchCollectionPage({ params }: PageProps) {
             {JSON.stringify(params, null, 2)}
           </CardContent>
         </Card>
-        {JSON.stringify(collectionBranches, null, 2)}
-
-        {isOwner && <AddNewBranch collection={collection} />}
       </div>
+      <CollectionBranchDisplay id={collection?._id} />
+
+      {isOwner && <AddNewBranch collection={collection} />}
     </PageLayout>
   );
 }

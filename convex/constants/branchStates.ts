@@ -1,5 +1,5 @@
 export const BranchStates = {
-  ACTIVE: "active",
+  ACTIVE: "taken",
   INACTIVE: "inactive",
-  DELETED: "deleted",
+  AVAILABLE: "available",
 } as const;

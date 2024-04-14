@@ -1,11 +1,12 @@
-import { FC, PropsWithChildren } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 
-export const Card: FC<PropsWithChildren<{ className?: string }>> = ({
-  children,
-  className,
-}) => {
+type CardProps = {} & React.HTMLAttributes<HTMLDivElement>;
+export const Card: FC<CardProps> = ({ children, className, ...props }) => {
   return (
-    <div className={`bg-white shadow-md rounded-lg w-full ${className}`}>
+    <div
+      {...props}
+      className={`bg-white shadow-md rounded-lg w-full ${className}`}
+    >
       {children}
     </div>
   );
