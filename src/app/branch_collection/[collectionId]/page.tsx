@@ -28,9 +28,11 @@ export default function BranchCollectionPage({ params }: PageProps) {
 
   const collectionBranches = useQuery(
     api.branchCollection.get_branches_for_collection,
-    {
-      branchCollectionId: params.collectionId,
-    }
+    userId && params.collectionId
+      ? {
+          branchCollectionId: params.collectionId,
+        }
+      : "skip"
   );
 
   const isOwner = collection?.owner === userId;
