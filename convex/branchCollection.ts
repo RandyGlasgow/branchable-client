@@ -1,4 +1,3 @@
-import exp from 'constants';
 import { v } from 'convex/values';
 
 import { mutation, query } from './_generated/server';
@@ -150,6 +149,16 @@ export const delete_branch_collection = mutation({
       memberRegistrationsToDelete.map((m) => ctx.db.delete(m._id))
     );
 
+    // delete the branches associated with the branch collection
+    const branchesToDelete = await ctx.db
+      .query("branch_collection_branch")
+      .withIndex("by_branch_collection_id", (q) =>
+        q.eq("branch_collection_id", branchCollectionId)
+      )
+      .collect();
+
+    await Promise.all(branchesToDelete.map((b) => ctx.db.delete(b._id)));
+
     await ctx.db.delete(branchCollectionId);
   },
 });
@@ -225,5 +234,46 @@ export const get_branches_for_collection = query({
         q.eq(q.field("branch_collection_id"), branchCollectionId)
       )
       .collect();
+  },
+});
+
+export const update_branch_status = mutation({
+  args: {
+    branchId: v.id("branch_collection_branch"),
+    state: v.union(
+      v.literal(BranchStates.ACTIVE),
+      v.literal(BranchStates.INACTIVE),
+      v.literal(BranchStates.AVAILABLE),
+      v.literal(BranchStates.UNDER_REVIEW)
+    ),
+  },
+  handler: async (ctx, { branchId, state }) => {
+    const identity = await validateUserIdentity(ctx);
+
+    const user = await ctx.db
+      .query("user")
+      .withIndex("by_token", (q) =>
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .unique();
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const branch = await ctx.db.get(branchId);
+
+    if (!branch) {
+      throw new Error("Branch not found");
+    }
+
+    await validateUserIsOwnerOfBranchCollection(
+      ctx,
+      user._id,
+      branch.branch_collection_id
+    );
+
+    await ctx.db.patch(branchId, {
+      state,
+    });
   },
 });

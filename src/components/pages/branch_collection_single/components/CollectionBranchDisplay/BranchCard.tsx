@@ -2,11 +2,13 @@ import { FC } from 'react';
 
 import { Card } from '@components/core/card/Card';
 import { CardContent } from '@components/core/card/CardContetn';
+import { Chip } from '@components/core/chip/Chip';
 import { DialogOverlay } from '@components/core/dialog/Dialog';
 import * as Dialog from '@radix-ui/react-dialog';
 
 import { Doc } from '../../../../../../convex/_generated/dataModel';
 import { BranchStatus } from './BranchStatus';
+import { BranchToggleStatus } from './BranchToggleStatus';
 
 export const BranchCard: FC<{
   branch: Doc<"branch_collection_branch">;
@@ -16,14 +18,12 @@ export const BranchCard: FC<{
   return (
     <Dialog.Root modal>
       <Dialog.Trigger className="col-span-full appearance-none" asChild>
-        <Card role="button" key={branch._id} className={""}>
+        <Card role="button" key={branch._id}>
           <CardContent>
-            <h2 className="flex justify-between items-center">
-              {branch.name} <BranchStatus status={branch.state} />
+            <h2 className="flex justify-between items-center pb-1">
+              {branch.name}
             </h2>
-            <div>
-              <span></span>
-            </div>
+            <BranchStatus status={branch.state} />
           </CardContent>
         </Card>
       </Dialog.Trigger>
@@ -38,6 +38,7 @@ export const BranchCard: FC<{
                   <span>
                     <BranchStatus status={branch.state} />
                   </span>
+                  <BranchToggleStatus branchId={branch} />
                 </div>
               </CardContent>
             </Card>

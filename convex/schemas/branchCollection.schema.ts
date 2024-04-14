@@ -30,6 +30,7 @@ export const branch_collection_branch = defineTable({
   state: v.union(
     v.literal(BranchStates.ACTIVE),
     v.literal(BranchStates.INACTIVE),
-    v.literal(BranchStates.AVAILABLE)
+    v.literal(BranchStates.AVAILABLE),
+    v.literal(BranchStates.UNDER_REVIEW)
   ),
 }).index("by_branch_collection_id", ["branch_collection_id"]);
